@@ -1,1 +1,1 @@
-# ProjectZomboid-Dynamic-swwitchs
+# ProjectZomboid-Dynamic-switchs
