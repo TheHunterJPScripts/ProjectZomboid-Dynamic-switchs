@@ -27,7 +27,7 @@ function isLightSwitch(isoObject)
 end
 
 LightSwitchInteraction.onInteraction = function (player, context, _worldobjects, test) 
-
+	-- Coment
 	for i,v in ipairs(_worldobjects) do
 		if isLightSwitch(v) then
 			-- print("[DS]: Index: ", i, " Name: IsoLightSwitch Name: ", v:getSprite():getName())
