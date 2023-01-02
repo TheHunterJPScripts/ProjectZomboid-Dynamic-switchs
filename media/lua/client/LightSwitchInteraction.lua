@@ -1,25 +1,50 @@
---require('ISUI/ISScrollingListBox')
+
+-- local LinkedLightSwitchsData = require("../server/LinkedLightSwitchsData");
 
 
 LightSwitchInteraction = {
 	switch = nil
 }
 
+local switchSprite = "linghting_indoor_01"
+
+function isLightSwitch(isoObject)
+	print("Before isntance check")
+	print("instance: ", instanceof(v, "IsoLightSwitch"))
+	
+	if not instanceof(v, "IsoLightSwitch") then return false end
+
+	print("Process found check")
+	spriteName = v:getSprite():getName()
+	_, found = string.find(spriteName, switchSprite)
+	print("Before found check")
+
+	if not found then return false end
+
+	print("Before after found check")
+	
+	return true
+end
 
 LightSwitchInteraction.onInteraction = function (player, context, _worldobjects, test) 
-	
-	local pl = getPlayer(player)
 
 	for i,v in ipairs(_worldobjects) do
-		local name = v:getName() or v:getObjectName();
-		if name == "LightSwitch" then
+		if isLightSwitch(v) then
+			-- print("[DS]: Index: ", i, " Name: IsoLightSwitch Name: ", v:getSprite():getName())
+			-- print("Position X: ", v:getSquare():getX(), " Y: ", v:getSquare():getY())
+			print("Found")
 			LightSwitchInteraction.switch = v
 		end
 	end
 
-	if not switch then return end
-	pl:Say("There is a switch there")
+	-- local pl = getPlayer(player)
+	-- pl:Say(LightSwitchInteraction.switch:getSprite():getName())
 
+	-- if not LightSwitchInteraction.switch then return end
+	-- pl:Say("There is a switch there")
+
+
+	--LinkedLightSwitchsData.addLinked(v.getKeyId())
 
 	-- Disable on/of option if the switch is on link mode
 	-- if not isInLinkingMode(LightSwitchInteraction.switch) then return end
@@ -34,9 +59,6 @@ LightSwitchInteraction.onInteraction = function (player, context, _worldobjects,
 	-- TODO: Put the menu option to turn on and off the on red if the switch is on link mode
 end
 
-function isInLinkingMode(switch)
-	return true
-end
 
 
 -- function ISSwitchMenu:new(player, context)
