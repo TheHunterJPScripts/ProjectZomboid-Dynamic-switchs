@@ -1,47 +1,37 @@
-
--- local LinkedLightSwitchsData = require("../server/LinkedLightSwitchsData");
+local LinkedLightSwitchsData = require("../server/LinkedLightSwitchsData");
 
 
 LightSwitchInteraction = {
 	switch = nil
 }
 
-local switchSprite = "linghting_indoor_01"
-
-function isLightSwitch(isoObject)
-	print("Before isntance check")
-	print("instance: ", instanceof(v, "IsoLightSwitch"))
-	
-	if not instanceof(v, "IsoLightSwitch") then return false end
-
-	print("Process found check")
-	spriteName = v:getSprite():getName()
-	_, found = string.find(spriteName, switchSprite)
-	print("Before found check")
-
-	if not found then return false end
-
-	print("Before after found check")
-	
-	return true
-end
+local switchSprite <const> = "linghting_indoor_01"
 
 LightSwitchInteraction.onInteraction = function (player, context, _worldobjects, test) 
+	local pl = getPlayer(player)
 
 	for i,v in ipairs(_worldobjects) do
-		if isLightSwitch(v) then
-			-- print("[DS]: Index: ", i, " Name: IsoLightSwitch Name: ", v:getSprite():getName())
-			-- print("Position X: ", v:getSquare():getX(), " Y: ", v:getSquare():getY())
-			print("Found")
-			LightSwitchInteraction.switch = v
+		
+		spriteName = v:getSprite():getName()
+		print("Check: ", switchSprite)
+		print("To check ", spriteName)
+		print("Match ", string.match(switchSprite, spriteName))
+
+		if instanceof(v, "IsoLightSwitch") then
+
+			if string.find(v:getSprite():getName(), switchSprite) then
+				print("[DS]: Index: ", i, " Name: IsoLightSwitch Name: ", v:getSprite():getName())
+				print("Position X: ", v:getSquare():getX(), " Y: ", v:getSquare():getY())
+				LightSwitchInteraction.switch = v
+				break
+			else
+				print("Not found")
+			end
 		end
 	end
 
-	-- local pl = getPlayer(player)
-	-- pl:Say(LightSwitchInteraction.switch:getSprite():getName())
-
-	-- if not LightSwitchInteraction.switch then return end
-	-- pl:Say("There is a switch there")
+	if not switch then return end
+	pl:Say("There is a switch there")
 
 
 	--LinkedLightSwitchsData.addLinked(v.getKeyId())
@@ -59,6 +49,18 @@ LightSwitchInteraction.onInteraction = function (player, context, _worldobjects,
 	-- TODO: Put the menu option to turn on and off the on red if the switch is on link mode
 end
 
+function isInLinkingMode(switch)
+	return true
+end
+
+local function isLightSwitch(isoObject)
+	if not instanceof(v, "IsoLightSwitch") then return false end
+
+	sprite = v:getSprite():getName()
+	if not	string.match(sprite, switchSprite) then return false end
+	
+	return true
+end
 
 
 -- function ISSwitchMenu:new(player, context)
