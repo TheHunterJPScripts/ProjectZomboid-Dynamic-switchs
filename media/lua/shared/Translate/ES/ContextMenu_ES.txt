@@ -1,3 +1,9 @@
 ContextMenu_ES = {
     ContextMenu_LightSwitchs = "Interuptor"
+    ContextMenu_LightSwitchs_ON = "Activar vinculación"
+    ContextMenu_LightSwitchs_OFF = "Desactivar vinculación"
+    ContextMenu_LightSwitchs_ToolTip_Title = "Modo vinculación"
+    ContextMenu_LightSwitchs_ToolTip_Description_ON = "Activar la vinculaciÃ³n de aparatos electrónicos"
+    ContextMenu_LightSwitchs_ToolTip_Description_OFF = "Desactivar la vinculación de aparatos"
+    ContextMenu_LightSwitchs_ToolTip_Disabled = "Desactivar la vinculación para recuperar la funcionalidad normal"
 }

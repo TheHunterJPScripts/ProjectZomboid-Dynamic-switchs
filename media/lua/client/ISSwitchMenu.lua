@@ -1,9 +1,5 @@
 ISSwitchMenu = {}
 
-function hola()
-    print("Que tal")
-end
-
 ISSwitchMenu.switchMenu = function(player, context, worldobjects)
 
     -- General menu
@@ -11,9 +7,9 @@ ISSwitchMenu.switchMenu = function(player, context, worldobjects)
     local buildOption = nil;
     -- Check the current open menus and search for the building menu.
 
-    for i, v in ipairs(context.options) do
-        if v.name == getText("ContextMenu_Build") then
-            buildOption = v;
+    for _, value in ipairs(context.options) do
+        if value.name == getText("ContextMenu_Build") then
+            buildOption = value;
             -- Retrieve the sub menu in case it is found.
             subMenu = context:getSubMenu(buildOption.subOption);
         end

@@ -1,7 +1,7 @@
 local Json = require("Json");
 
 LinkedLightSwitchsData = {
-    message = "Hello"
+    message = "Hello",
     dataTable = {
     }
 }
@@ -54,7 +54,6 @@ function LinkedLightSwitchsData.removeTargetToLinked(id, key)
     if LinkedLightSwitchsData.hasLinkedSwith(id) then return end
     LinkedLightSwitchsData.dataTable[id][key] = nil
 end
-
 
 Events.OnLoad.Add(LinkedLightSwitchsData.load)
 Events.OnSave.Add(LinkedLightSwitchsData.save)
