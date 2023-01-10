@@ -20,6 +20,7 @@ end
 
 local function setSwitchActiveFromServer(switch, active)
 	switch:getModData()["active"] = active -- TODO: Move to the server using event system
+	switch:transmitModData()
 end
 
 local function activateLinking(isoObject)
